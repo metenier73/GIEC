@@ -87,5 +87,5 @@ Les contributions sont les bienvenues !
 Tu peux proposer des pull requests, signaler des bugs ou suggérer des améliorations.
 📬 Contact
 
-Développé par [Ton Nom ou Organisation]
-📧 Contact : contact@example.com
+Développé par [Metenier Myriam]
+📧 Contact : meteniermyriam@yahoo.fr
