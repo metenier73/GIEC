@@ -1,0 +1,44 @@
+Pour créer un superutilisateur en Python dans un projet Django, vous pouvez exécuter le script suivant en utilisant Django. Ce script appelle la commande createsuperuser fournie par Django pour créer un compte administrateur avec un nom d'utilisateur, un email et un mot de passe.
+Méthode 1 : Depuis le Terminal
+
+Si vous êtes dans le terminal, utilisez simplement la commande suivante (en vous assurant d’être dans le répertoire de votre projet) :
+
+python manage.py createsuperuser
+
+Ensuite, suivez les instructions. Django vous demandera d'entrer un nom d'utilisateur, une adresse e-mail et un mot de passe.
+Méthode 2 : Script Python Automatisé
+
+Si vous souhaitez créer un superutilisateur via un script Python (par exemple, lors de la configuration initiale d’un projet), vous pouvez le faire en accédant directement aux modèles de Django dans un script.
+
+Voici un exemple de script que vous pouvez exécuter depuis un fichier Python, comme create_superuser.py, dans le répertoire de votre projet Django :
+
+import os
+import django
+from django.contrib.auth.models import User
+
+# Configuration de l'environnement Django
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'projet_giec.settings')
+django.setup()
+
+# Vérification pour ne pas recréer le super utilisateur si il existe déjà
+if not User.objects.filter(username='admin').exists():
+    User.objects.create_superuser('admin', 'admin@example.com', 'motdepasse123')
+    print("Superutilisateur créé avec succès !")
+else:
+    print("Le superutilisateur existe déjà.")
+
+Exécution du script
+
+    Assurez-vous que le script est dans le répertoire principal du projet Django.
+
+    Exécutez le script avec la commande :
+
+    python create_superuser.py
+
+Ce script crée un superutilisateur avec :
+
+    Nom d'utilisateur : admin
+
+    E-mail : admin@example.com
+
+    Mot de passe : motdepasse123
