@@ -1,0 +1,43 @@
+Dans Django, le fichier admin.py est utilisé pour configurer l’interface d'administration. En enregistrant les modèles, 
+on peut les gérer directement depuis l'interface admin de Django. 
+Voici comment configurer le fichier admin.py pour l'application api_giec dans notre projet GIEC.
+Contenu du fichier admin.py
+
+Dans le fichier api_giec/admin.py, il suffit d’enregistrer le modèle RapportClimatique pour qu’il soit accessible dans l’interface d’administration. 
+Vous pouvez également personnaliser l'affichage dans l'admin en ajoutant des options.
+
+Voici un exemple basique de code pour admin.py :
+
+from django.contrib import admin
+from .models import RapportClimatique
+
+# Enregistrement du modèle de rapport climatique
+@admin.register(RapportClimatique)
+class RapportClimatiqueAdmin(admin.ModelAdmin):
+    list_display = ('titre', 'date_publication')  # Colonnes affichées dans la liste d'objets
+    search_fields = ('titre',)  # Ajoute une barre de recherche sur le champ 'titre'
+    list_filter = ('date_publication',)  # Filtre par date de publication
+
+Explications des options
+
+    list_display : Définit les champs affichés dans la liste des objets, comme le titre et la date de publication. Cela rend la liste d’éléments plus lisible dans l’interface admin.
+
+    search_fields : Ajoute une barre de recherche qui permet de rechercher dans les rapports climatiques par le champ titre.
+
+    list_filter : Ajoute un filtre de sélection par date_publication dans le panneau de filtrage latéral, pratique pour filtrer les rapports selon leur date de publication.
+
+Accès à l'interface d'administration
+
+Pour accéder à l’interface admin, assurez-vous d'avoir créé un superutilisateur :
+
+python manage.py createsuperuser
+
+Une fois le serveur démarré, connectez-vous à l'interface d’administration via http://127.0.0.1:8000/admin. 
+Vous devriez y voir le modèle RapportClimatique avec les options de recherche, de tri, et de filtrage définies.
+
+Résumé
+Action	URL
+Interface Admin	/admin/
+Liste des rapports GIEC API	/api/rapports/
+Page d’accueil JSON (option)	/
+
